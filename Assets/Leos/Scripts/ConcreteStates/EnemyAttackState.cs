@@ -7,7 +7,7 @@ public class EnemyAttackState : EnemyState
     private Transform player;
 
     private float timer;
-    private float timeBetweenAttacks;
+    private float timeBetweenAttacks = 2;
 
     private float exitTimer;
     private float timeTillExit;
