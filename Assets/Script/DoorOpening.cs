@@ -16,6 +16,7 @@ public class DoorOpening : Interacteble
     protected override void OnPlayerInteracted()
     {
         print("dörren öppet");
+
         if (_player._hasKey == true)
         {
 
