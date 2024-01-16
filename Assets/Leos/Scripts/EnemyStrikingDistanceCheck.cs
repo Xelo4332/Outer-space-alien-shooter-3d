@@ -13,13 +13,16 @@ public class EnemyStrikingDistanceCheck : MonoBehaviour
         PlayerTarget = GameObject.FindGameObjectWithTag("Player");
 
         enemy = GetComponentInParent<Enemy>();
+
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == PlayerTarget)
         {
             enemy.SetStrikingDistanceBool(true);
+            Debug.Log("hehehea");
         }
     }
     private void OnTriggerExit(Collider other)

@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
     {
         StateMachine.CurrentEnemyState.FrameUpdate();
         Debug.Log(StateMachine.CurrentEnemyState);
+        Debug.Log(IsWithinStrikingDistance);
+
     }
 
     private void FixedUpdate()
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
     public void SetStrikingDistanceBool(bool isWithinStrikingDistance)
     {
         IsWithinStrikingDistance = isWithinStrikingDistance;
+
     }
 
 

@@ -67,7 +67,7 @@ public class MoveAi : MonoBehaviour
 
         if (targetDistance >= 5)
         {
-            rb.AddForce(force,ForceMode.Force);
+            rb.AddForce(force,ForceMode.VelocityChange);
             rb.isKinematic = false;
 
         }
