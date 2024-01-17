@@ -39,9 +39,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void DamageHit()
+    public void DamageHit(int damage)
     {
-        _health -= 10;
+        _health -= damage;
         StartRegeneration();
     }
     private void InteractHandle()
