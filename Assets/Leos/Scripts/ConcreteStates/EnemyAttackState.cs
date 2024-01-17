@@ -42,6 +42,7 @@ public class EnemyAttackState : EnemyState
 
             //damage Player
             Debug.Log("haha ur damgaed");
+
         }
 
        if(enemy.IsWithinStrikingDistance == false)
