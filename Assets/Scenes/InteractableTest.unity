@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hasKey: 0
-  _health: 10
+  _health: 50
   RegenerationAmount: 10
 --- !u!1 &406226398 stripped
 GameObject:

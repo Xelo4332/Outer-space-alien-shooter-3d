@@ -5,11 +5,46 @@ using UnityEngine;
 public class DoorOpening : Interacteble
 {
     [SerializeField] Player _player;
+    private Coroutine _attackRoutine;
     // Start is called before the first frame update
     private void Awake()
     {
         FindObjectOfType<Player>();
-        
+
+    }
+
+    protected override void OnTriggerEnter(Collider col)
+    {
+        base.OnTriggerEnter(col);
+        if (col.gameObject.TryGetComponent(out Player player))
+        {
+            if (_attackRoutine == null)
+            {
+                _attackRoutine = StartCoroutine(AttackRoutine());
+            }
+        }
+    }
+
+    protected override void OnTriggerExit(Collider col)
+    {
+        base.OnTriggerExit(col);
+        if (col.gameObject.TryGetComponent(out Player player))
+        {
+            if (_attackRoutine != null)
+            {
+                StopCoroutine(_attackRoutine);
+                _attackRoutine = null;
+            }
+        }
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        while (gameObject)
+        {
+            _player.DamageHit();
+            yield return new WaitForSeconds(1);
+        }
     }
 
     // Update is called once per frame

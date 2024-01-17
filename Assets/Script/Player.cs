@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
             StopCoroutine(_regernerationRoutine);
             _regernerationRoutine = null;
         }
-        StartCoroutine(RegernerationRoutine());
+        _regernerationRoutine = StartCoroutine(RegernerationRoutine());
     }
 
 
@@ -39,14 +39,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void DamageHit()
+    public void DamageHit()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            _health -= 1;
-        }
+        _health -= 10;
         StartRegeneration();
-
     }
     private void InteractHandle()
     {

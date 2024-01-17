@@ -14,7 +14,7 @@ public class Interacteble : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider col)
+    protected virtual void OnTriggerEnter(Collider col)
     {
         if (col.TryGetComponent(out Player player))
         {
