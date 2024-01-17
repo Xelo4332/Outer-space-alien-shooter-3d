@@ -57,12 +57,7 @@ public class MoveAi : MonoBehaviour
             reachedWaypoint = false;
         }
 
-
-
         float distance = Vector3.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-       
-        
 
         if (distance < nextWaypointDistance)
         {
@@ -95,7 +90,8 @@ public class MoveAi : MonoBehaviour
         rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
         Rotate();
     }
-    private void Rotate()
+
+    void Rotate()
     {
         rb.transform.LookAt(target.position);
     }
