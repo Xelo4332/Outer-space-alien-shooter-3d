@@ -9,7 +9,7 @@ public class DoorOpening : Interacteble
     // Start is called before the first frame update
     private void Awake()
     {
-        FindObjectOfType<Player>();
+        _player = FindObjectOfType<Player>();
 
     }
 
