@@ -42,7 +42,6 @@ public class DoorOpening : Interacteble
     {
         while (gameObject)
         {
-            _player.DamageHit();
             yield return new WaitForSeconds(1);
         }
     }

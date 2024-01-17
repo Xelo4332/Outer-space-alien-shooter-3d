@@ -17,12 +17,9 @@ public class EnemyAttackState : EnemyState
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindObjectOfType<Player>();
     }
 
-    public override void Awake()
-    {
-        player = FindObjectOfType<Player>();
-    }
 
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
     {
@@ -46,7 +43,7 @@ public class EnemyAttackState : EnemyState
        if(timer > timeBetweenAttacks)
         {
             timer = 0;
-
+            player.DamageHit(10);
             Debug.Log("haha ur damgaed");
 
         }
@@ -66,8 +63,4 @@ public class EnemyAttackState : EnemyState
     {
         base.PhysicsUpdate();
     }
-
-    
-   
-
 }
