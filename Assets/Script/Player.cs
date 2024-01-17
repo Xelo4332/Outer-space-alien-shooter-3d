@@ -5,8 +5,9 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    public event Action OnhealthUpdate;
     [SerializeField] public bool _hasKey;
-    [SerializeField] private float _health;
+    [SerializeField] public float _health;
     public event Action Interact;
     [SerializeField] public int RegenerationAmount;
     private Coroutine _regernerationRoutine;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour
         while (_health < 100)
         {
             _health += RegenerationAmount;
+            OnhealthUpdate.Invoke();
             yield return new WaitForSeconds(1);
         }
     }
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
     {
         _health -= damage;
         StartRegeneration();
+        OnhealthUpdate.Invoke();
     }
     private void InteractHandle()
     {
