@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyState
 {
-    private Transform player;
+    private Transform target;
+
+    [SerializeField] Player player;
 
     private float timer;
     private float timeBetweenAttacks = 2;
@@ -14,7 +16,12 @@ public class EnemyAttackState : EnemyState
     private float distanceToCountExit = 3f;
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public override void Awake()
+    {
+        player = FindObjectOfType<Player>();
     }
 
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
@@ -40,7 +47,6 @@ public class EnemyAttackState : EnemyState
         {
             timer = 0;
 
-            //damage Player
             Debug.Log("haha ur damgaed");
 
         }

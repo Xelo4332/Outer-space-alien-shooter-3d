@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyState
+public class EnemyState : MonoBehaviour
 {
     protected Enemy enemy;
     protected EnemyStateMachine enemyStateMachine;
@@ -13,6 +13,10 @@ public class EnemyState
         this.enemyStateMachine = enemyStateMachine;
     }
 
+    public virtual void Awake()
+    {
+
+    }
     public virtual void EnterState()
     {
 
