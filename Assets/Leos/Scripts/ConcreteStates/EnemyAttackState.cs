@@ -8,6 +8,8 @@ public class EnemyAttackState : EnemyState
 
     [SerializeField] Player player;
 
+    private Animator anim;
+
     private float timer;
     private float timeBetweenAttacks = 2;
 
@@ -18,6 +20,7 @@ public class EnemyAttackState : EnemyState
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         player = GameObject.FindObjectOfType<Player>();
+        anim = GameObject.FindObjectOfType<Animator>();
     }
 
 
@@ -39,8 +42,8 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
-       if(timer > timeBetweenAttacks)
+        anim.SetBool("IsAttack", true);
+        if (timer > timeBetweenAttacks)
         {
             timer = 0;
             player.DamageHit(10);
@@ -53,6 +56,7 @@ public class EnemyAttackState : EnemyState
             exitTimer += Time.deltaTime;
             if(exitTimer > timeTillExit)
             {
+                anim.SetBool("IsAttack", false);
                 enemy.StateMachine.ChangeState(enemy.ChaseState);
             }
         }
