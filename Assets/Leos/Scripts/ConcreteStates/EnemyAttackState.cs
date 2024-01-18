@@ -47,7 +47,6 @@ public class EnemyAttackState : EnemyState
         {
             timer = 0;
             player.DamageHit(10);
-            Debug.Log("haha ur damgaed");
 
         }
 
