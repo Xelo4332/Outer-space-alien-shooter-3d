@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorOpening : Interacteble
 {
     [SerializeField] Player _player;
+    [SerializeField] GameObject _Door;
     private Coroutine _attackRoutine;
     // Start is called before the first frame update
     private void Awake()
@@ -12,7 +13,7 @@ public class DoorOpening : Interacteble
         _player = FindObjectOfType<Player>();
 
     }
-
+    /*
     protected override void OnTriggerEnter(Collider col)
     {
         base.OnTriggerEnter(col);
@@ -45,20 +46,18 @@ public class DoorOpening : Interacteble
             yield return new WaitForSeconds(1);
         }
     }
+    */
 
     // Update is called once per frame
     protected override void OnPlayerInteracted()
     {
         if (_player._hasKey == true)
         {
-            gameObject.SetActive(false);
+            _Door.SetActive(false);
             _player._hasKey = false;
         }
         print("dörren öppet");
 
-        if (_player._hasKey == true)
-        {
-
-        }
+  
     }
 }
