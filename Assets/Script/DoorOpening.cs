@@ -6,7 +6,11 @@ public class DoorOpening : Interacteble
 {
     [SerializeField] Player _player;
     [SerializeField] GameObject _Door;
+    [SerializeField] GameObject _SecondDoor;
+    [SerializeField] Collider[] _collider;
     private Coroutine _attackRoutine;
+    
+    private int AmmountDoors;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -54,6 +58,7 @@ public class DoorOpening : Interacteble
         if (_player._hasKey == true)
         {
             _Door.SetActive(false);
+            _SecondDoor.SetActive(false);
             _player._hasKey = false;
         }
         print("dörren öppet");
