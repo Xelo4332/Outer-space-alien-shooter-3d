@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    public Animator animator;
+    public Animation animation;
+
     public void StartGame()
     {
+        animation.Play();
         SceneManager.LoadScene("GameScene");
     }
 
