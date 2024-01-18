@@ -38173,6 +38173,35 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1332786901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 1332786898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1332786902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332786901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441de21ea42695143a97852f3911ad80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  range: 35
+  hitRate: 0.25
+  burst: 0
+  bulletsPerBurst: 3
+  currentBurst: 0
+  fpsCam: {fileID: 1332786903}
+--- !u!20 &1332786903 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 1332786898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1333945773
 GameObject:
   m_ObjectHideFlags: 0
