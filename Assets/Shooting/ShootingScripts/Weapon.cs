@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -6,7 +7,7 @@ public class Weapon : MonoBehaviour
     public float damage;
     public float range;
     public float fireRate = 0.25f;
-    private float nextTimeToFire = 0f;
+    protected float nextTimeToFire = 0f;
 
     public bool singleOrAuto = false;
     public bool burst = false;
@@ -15,6 +16,9 @@ public class Weapon : MonoBehaviour
     public int currentBurst;
 
     public float spreadIntensity;
+
+    public float verticalRecoil;
+    public float horizontalRecoil;
 
     public float reloadTime;
     public int magazineSize, bulletsLeft;
@@ -25,20 +29,26 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     public GameObject bulletImpactEffectPrefab;
 
+    public ParticleSystem muzzleEffect;
+    private Animator animator;
+
+    public bool isSprinting = false;
+
     private void Start()
     {
         bulletsLeft = magazineSize;
         isReloading = false;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if(singleOrAuto == true && isReloading == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
+        if(singleOrAuto == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             Shoot();
         }
-        else if(burst == true && isReloading == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
+        else if(burst == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             Shoot();
@@ -51,14 +61,19 @@ public class Weapon : MonoBehaviour
             if(isReloading == false)
             {
                 Reload();
+                animator.SetTrigger("Reload");
                 print("Reloading");
             }
             
         }
+
     }
 
     void Shoot()
     {
+        muzzleEffect.Play();
+        animator.SetTrigger("Recoil");
+
         Vector3 shootingDirection = calculateDirectionAndSpread().normalized;
         RaycastHit hit;
         fpsCam.transform.forward = shootingDirection;
