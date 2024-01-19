@@ -55,13 +55,11 @@ public class DoorOpening : Interacteble
     // Update is called once per frame
     protected override void OnPlayerInteracted()
     {
-        if (_player._hasKey == true)
-        {
+        
+        
             _Door.SetActive(false);
             _SecondDoor.SetActive(false);
-            _enemy.SetActive(true);
-            _player._hasKey = false;
-        }
+        
         print("dörren öppet");
 
   
