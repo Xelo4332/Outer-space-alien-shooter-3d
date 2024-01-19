@@ -7,7 +7,7 @@ public class DoorOpening : Interacteble
     [SerializeField] Player _player;
     [SerializeField] GameObject _Door;
     [SerializeField] GameObject _SecondDoor;
-    [SerializeField] Collider[] _collider;
+    [SerializeField] GameObject _enemy;
     private Coroutine _attackRoutine;
     
     private int AmmountDoors;
@@ -59,6 +59,7 @@ public class DoorOpening : Interacteble
         {
             _Door.SetActive(false);
             _SecondDoor.SetActive(false);
+            _enemy.SetActive(true);
             _player._hasKey = false;
         }
         print("dörren öppet");
