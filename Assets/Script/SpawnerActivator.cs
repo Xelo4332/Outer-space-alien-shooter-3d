@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class SpawnerActivator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Player _player;
+    private GameObject _enemySpawner;
+    private void Start()
     {
-        
+       _player = FindObjectOfType<Player>();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (TryGetComponent(out Player player))
+        {
+            _enemySpawner.SetActive(true);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
