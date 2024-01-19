@@ -9,6 +9,7 @@ public class DoorOpening : Interacteble
     [SerializeField] GameObject _SecondDoor;
     [SerializeField] GameObject _enemy;
     private Coroutine _attackRoutine;
+    [SerializeField]protected bool _isOpened;
     
     private int AmmountDoors;
     // Start is called before the first frame update
@@ -55,13 +56,15 @@ public class DoorOpening : Interacteble
     // Update is called once per frame
     protected override void OnPlayerInteracted()
     {
-        if (_player._hasKey == true)
+
+        if (_isOpened == false)
         {
+            _isOpened = true;
             _Door.SetActive(false);
             _SecondDoor.SetActive(false);
-            _enemy.SetActive(true);
-            _player._hasKey = false;
+
         }
+
         print("dörren öppet");
 
   
