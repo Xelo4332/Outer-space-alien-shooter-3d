@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     public float range;
     public float fireRate = 0.25f;
     protected float nextTimeToFire = 0f;
@@ -81,10 +81,10 @@ public class Weapon : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            Target target = hit.transform.GetComponent<Target>();
+            Zombie target = hit.transform.GetComponent<Zombie>();
             if(target != null)
             {
-                target.TakeDamage(damage);
+                target.Damage(damage);
             }
 
             bulletsLeft--;
