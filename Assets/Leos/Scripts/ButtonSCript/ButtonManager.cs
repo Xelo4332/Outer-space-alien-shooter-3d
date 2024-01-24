@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour
 
     public void StartGame()
     {
+        animation.Play();
         SceneManager.LoadScene("GameScene");
     }
 
