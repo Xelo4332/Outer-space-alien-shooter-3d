@@ -9,7 +9,7 @@ public class Interacteble : MonoBehaviour
     [SerializeField] protected GameObject _UIcanvas;
     private void Start()
     {
-        _material.SetFloat("_Scale", _scale);
+        //_material.SetFloat("_Scale", _scale);
 
     }
 
@@ -19,8 +19,8 @@ public class Interacteble : MonoBehaviour
         if (col.TryGetComponent(out Player player))
         {
             player.Interact += OnPlayerInteracted;
-            _scale = 1.1f;
-            _material.SetFloat("_Scale", _scale);
+           // _scale = 1.1f;
+           // _material.SetFloat("_Scale", _scale);
             _UIcanvas.SetActive(true);
         }
     }
@@ -31,8 +31,8 @@ public class Interacteble : MonoBehaviour
         if (col.TryGetComponent(out Player player))
         {
             player.Interact -= OnPlayerInteracted;
-            _scale = 0;
-            _material.SetFloat("_Scale", _scale);
+           // _scale = 0;
+            //_material.SetFloat("_Scale", _scale);
             _UIcanvas.SetActive(false);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnSpots;
-    [SerializeField] private Enemy[] _enemies;
+    [SerializeField] private Zombie[] _enemies;
     [SerializeField] private float _spawnInterval;
     [SerializeField] private int _startEnemiesCount;
 

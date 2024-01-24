@@ -5,14 +5,20 @@ using UnityEngine;
 public class DoorOpening : Interacteble
 {
     [SerializeField] Player _player;
+    [SerializeField] GameObject _Door;
+    [SerializeField] GameObject _SecondDoor;
+    [SerializeField] GameObject _enemy;
     private Coroutine _attackRoutine;
+    [SerializeField]protected bool _isOpened;
+    
+    private int AmmountDoors;
     // Start is called before the first frame update
     private void Awake()
     {
         _player = FindObjectOfType<Player>();
 
     }
-
+    /*
     protected override void OnTriggerEnter(Collider col)
     {
         base.OnTriggerEnter(col);
@@ -45,20 +51,22 @@ public class DoorOpening : Interacteble
             yield return new WaitForSeconds(1);
         }
     }
+    */
 
     // Update is called once per frame
     protected override void OnPlayerInteracted()
     {
-        if (_player._hasKey == true)
+
+        if (_isOpened == false)
         {
-            gameObject.SetActive(false);
-            _player._hasKey = false;
+            _isOpened = true;
+            _Door.SetActive(false);
+            _SecondDoor.SetActive(false);
+
         }
+
         print("dörren öppet");
 
-        if (_player._hasKey == true)
-        {
-
-        }
+  
     }
 }
