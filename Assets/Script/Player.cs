@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
     {
         InteractHandle();
 
+        if(_health <= 0)
+        {
+            Debug.LogWarning("U dead");
+        }
     }
 
     private void StartRegeneration()
@@ -46,6 +50,7 @@ public class Player : MonoBehaviour
         _health -= damage;
         StartRegeneration();
         OnhealthUpdate.Invoke();
+        
     }
     private void InteractHandle()
     {

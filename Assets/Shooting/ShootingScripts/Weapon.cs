@@ -1,9 +1,11 @@
 
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
+    public Text ammoText;
+
     public int damage;
     public float range;
     public float fireRate = 0.25f;
@@ -67,6 +69,7 @@ public class Weapon : MonoBehaviour
             
         }
 
+        ammoText.text = bulletsLeft.ToString() + " / 30";
     }
 
     void Shoot()
