@@ -35,12 +35,17 @@ public class Weapon : MonoBehaviour
     private Animator animator;
 
     public bool isSprinting = false;
+    //Deni gör audio
+    [SerializeField] private AudioClip _shoootingSound;
+    [SerializeField] private AudioClip _reloadingSound;
+    private AudioSource _weaponSource;
 
     private void Start()
     {
         bulletsLeft = magazineSize;
         isReloading = false;
         animator = GetComponent<Animator>();
+        _weaponSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -76,6 +81,8 @@ public class Weapon : MonoBehaviour
     {
         muzzleEffect.Play();
         animator.SetTrigger("Recoil");
+        _weaponSource.clip = _shoootingSound;
+        _weaponSource.Play();
 
         Vector3 shootingDirection = calculateDirectionAndSpread().normalized;
         RaycastHit hit;
@@ -97,8 +104,11 @@ public class Weapon : MonoBehaviour
 
     private void Reload()
     {
+        
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
+        _weaponSource.clip = _reloadingSound;
+
         print("Reloading...");
     }
 
