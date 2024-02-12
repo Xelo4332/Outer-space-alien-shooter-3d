@@ -71,7 +71,9 @@ public class MoveAi : MonoBehaviour
     private void FixedUpdate()
     {
         float targetDistance = Vector3.Distance(rb.position, target.position);
-        if (targetDistance >= 5)
+        Debug.DrawLine(rb.position, target.position);
+        Debug.Log(targetDistance);
+        if (targetDistance > 5)
         {
             Move(speed);
             rb.isKinematic = false;
