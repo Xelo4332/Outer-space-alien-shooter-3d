@@ -81,8 +81,8 @@ public class Weapon : MonoBehaviour
     {
         muzzleEffect.Play();
         animator.SetTrigger("Recoil");
-        _weaponSource.clip = _shoootingSound;
-        _weaponSource.Play();
+        //_weaponSource.clip = _shoootingSound;
+        //_weaponSource.Play();
 
         Vector3 shootingDirection = calculateDirectionAndSpread().normalized;
         RaycastHit hit;
