@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     public float range;
     public float fireRate = 0.25f;
     protected float nextTimeToFire = 0f;
 
-    public bool singleOrAuto = false;
+    public bool Single = false;
+    public bool Auto = false;
     public bool burst = false;
 
     public int bulletsPerBurst = 3;
@@ -43,7 +44,12 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if(singleOrAuto == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
+        if (Single == true && isReloading == false && isSprinting == false && Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
+        {
+            nextTimeToFire = Time.time + fireRate;
+            Shoot();
+        }
+        if (Auto == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             Shoot();
@@ -51,9 +57,10 @@ public class Weapon : MonoBehaviour
         else if(burst == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
-            Shoot();
-            Shoot();
-            Shoot();
+            for (int i = 0; i < bulletsPerBurst; i++)
+            {
+                Shoot();
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize)
@@ -81,14 +88,15 @@ public class Weapon : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            Zombie target = hit.transform.GetComponent<Zombie>();
+            Target target = hit.transform.GetComponent<Target>();
             if(target != null)
             {
-                target.Damage(damage);
+                target.TakeDamage(damage);
             }
 
             bulletsLeft--;
         }
+        fpsCam.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, verticalRecoil, horizontalRecoil));
         print("Shooting");
     }
 
