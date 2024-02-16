@@ -46,7 +46,7 @@ public class EnemyAttackState : EnemyState
         if (timer > timeBetweenAttacks)
         {
             timer = 0;
-            player.DamageHit(10);
+            player.DamageHit(25);
 
         }
 
