@@ -4,23 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
-    public Text ammoText;
+    //public Text ammoText;
 
     public int damage;
     public float range;
     public float fireRate = 0.25f;
     protected float nextTimeToFire = 0f;
 
-    public bool singleOrAuto = false;
-    public bool burst = false;
+    public bool Auto = false;
+    public bool Burst = false;
+    public bool Single = false;
 
     public int bulletsPerBurst = 3;
     public int currentBurst;
 
     public float spreadIntensity;
-
-    public float verticalRecoil;
-    public float horizontalRecoil;
 
     public float reloadTime;
     public int magazineSize, bulletsLeft;
@@ -30,6 +28,8 @@ public class Weapon : MonoBehaviour
     private Collision raycastHit;
     [SerializeField]
     public GameObject bulletImpactEffectPrefab;
+
+    private float spreadModifier = 1;
 
     public ParticleSystem muzzleEffect;
     private Animator animator;
@@ -50,20 +50,28 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if(singleOrAuto == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
+        if(Auto == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             Shoot();
         }
-        else if(burst == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
+        else if(Burst == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
+        {
+
+            for(int i = 0; i<bulletsPerBurst; i++)
+            {
+                nextTimeToFire = Time.time + fireRate;
+                Shoot();
+            }
+
+        }
+        else if (Single == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
-            Shoot();
-            Shoot();
             Shoot();
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize)
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize)
         {
             if(isReloading == false)
             {
@@ -74,15 +82,15 @@ public class Weapon : MonoBehaviour
             
         }
 
-        ammoText.text = bulletsLeft.ToString() + " / 30";
+        //ammoText.text = bulletsLeft.ToString() + " / 30";
     }
 
     void Shoot()
     {
         muzzleEffect.Play();
         animator.SetTrigger("Recoil");
-        _weaponSource.clip = _shoootingSound;
-        _weaponSource.Play();
+       // _weaponSource.clip = _shoootingSound;
+        //_weaponSource.Play();
 
         Vector3 shootingDirection = calculateDirectionAndSpread().normalized;
         RaycastHit hit;
@@ -107,7 +115,7 @@ public class Weapon : MonoBehaviour
         
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
-        _weaponSource.clip = _reloadingSound;
+        //_weaponSource.clip = _reloadingSound;
 
         print("Reloading...");
     }
@@ -136,8 +144,8 @@ public class Weapon : MonoBehaviour
 
         Vector3 direction = targetPoint - fpsCam.transform.position;
 
-        float x = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
-        float y = UnityEngine.Random.Range(-spreadIntensity, spreadIntensity);
+        float x = UnityEngine.Random.Range(-spreadIntensity * spreadModifier, spreadIntensity * spreadModifier);
+        float y = UnityEngine.Random.Range(-spreadIntensity * spreadModifier, spreadIntensity * spreadModifier);
 
         return direction + new Vector3(x, y, 0);
     }
