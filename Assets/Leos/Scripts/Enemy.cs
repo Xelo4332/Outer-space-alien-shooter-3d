@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
 {
+    public event Action Ondie;
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
     public float CurrentHealth { get; set; }
     public bool IsWithinStrikingDistance { get; set; }
@@ -58,11 +60,13 @@ public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
         if (CurrentHealth <= 0)
         {
             Die();
+           
         }
     }
 
     public void Die()
     {
+        Ondie.Invoke();
         Destroy(gameObject);
     }
     #endregion

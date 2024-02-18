@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class SpawnerActivator : MonoBehaviour
 {
-    private Player _player;
-    private GameObject _enemySpawner;
+    //Deni
+    [SerializeField] private int _waveNumber;
+    private EnemyWaveSystemSpawner _spawner;
+
+    //Will find Spawner script.
     private void Start()
     {
-       _player = FindObjectOfType<Player>();
+        _spawner = FindObjectOfType<EnemyWaveSystemSpawner>();
     }
-    private void OnTriggerEnter(Collider other)
+
+    //If player collides with spawner activater object, that it will activate a new spawn points. Wave number are bassicly a variable to show which room are spawn points located.
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (TryGetComponent(out Player player))
+        if (col.CompareTag("Player"))
         {
-            _enemySpawner.SetActive(true);
+            _spawner.ActiveWave(_waveNumber);
         }
+
     }
 
 }
