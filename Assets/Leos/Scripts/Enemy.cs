@@ -68,8 +68,8 @@ public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
 
     public void Die()
     {
-        Ondie.Invoke();
-        _player.UpdateScore(1);
+       // Ondie.Invoke();
+        //_player.UpdateScore(1);
         Destroy(gameObject);
     }
     #endregion
