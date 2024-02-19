@@ -5,6 +5,7 @@ using System;
 
 public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
 {
+    private Player _player;
     public event Action Ondie;
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
     public float CurrentHealth { get; set; }
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
     #endregion
     private void Awake()
     {
+        _player = FindObjectOfType<Player>();
         StateMachine = new EnemyStateMachine();
 
         ChaseState = new EnemyChaseState(this, StateMachine);
@@ -67,6 +69,7 @@ public class Enemy : MonoBehaviour, IDamageable, ItriggerCheckable
     public void Die()
     {
         Ondie.Invoke();
+        _player.UpdateScore(1);
         Destroy(gameObject);
     }
     #endregion

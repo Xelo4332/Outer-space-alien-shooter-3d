@@ -6,17 +6,19 @@ using System;
 public class Player : MonoBehaviour
 {
     public event Action OnhealthUpdate;
+    public event Action OnScoreUpdate;
     [SerializeField] public bool _hasKey;
     [SerializeField] public float _health;
     public event Action Interact;
     [SerializeField] public int RegenerationAmount;
+    public int _score;
     private Coroutine _regernerationRoutine;
 
     private void Update()
     {
         InteractHandle();
 
-        if(_health <= 0)
+        if (_health <= 0)
         {
             Debug.LogWarning("U dead");
         }
@@ -50,7 +52,7 @@ public class Player : MonoBehaviour
         _health -= damage;
         StartRegeneration();
         OnhealthUpdate.Invoke();
-        
+
     }
     private void InteractHandle()
     {
@@ -58,5 +60,11 @@ public class Player : MonoBehaviour
         {
             Interact?.Invoke();
         }
+    }
+
+    public void UpdateScore(int score)
+    {
+        _score += score;
+        OnScoreUpdate?.Invoke();
     }
 }

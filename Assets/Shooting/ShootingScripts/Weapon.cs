@@ -107,7 +107,7 @@ public class Weapon : MonoBehaviour
         
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
-        _weaponSource.clip = _reloadingSound;
+        //_weaponSource.clip = _reloadingSound;
 
         print("Reloading...");
     }
