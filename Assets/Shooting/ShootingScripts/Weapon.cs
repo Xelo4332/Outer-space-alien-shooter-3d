@@ -11,16 +11,15 @@ public class Weapon : MonoBehaviour
     public float fireRate = 0.25f;
     protected float nextTimeToFire = 0f;
 
-    public bool singleOrAuto = false;
-    public bool burst = false;
+    public bool Auto = false;
+    public bool Burst = false;
+    public bool Single = false;
 
     public int bulletsPerBurst = 3;
     public int currentBurst;
 
     public float spreadIntensity;
-
-    public float verticalRecoil;
-    public float horizontalRecoil;
+    private int spreadModifier;
 
     public float reloadTime;
     public int magazineSize, bulletsLeft;
@@ -40,8 +39,11 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AudioClip _reloadingSound;
     private AudioSource _weaponSource;
 
+    private Recoil Recoil_Script;
+
     private void Start()
     {
+        Recoil_Script = GameObject.Find("CameraRot/CameraRecoil").GetComponent<Recoil>();
         bulletsLeft = magazineSize;
         isReloading = false;
         animator = GetComponent<Animator>();
@@ -50,20 +52,30 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if(singleOrAuto == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
+        if(Auto == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             Shoot();
+            Recoil_Script.RecoilFire();
         }
-        else if(burst == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
+        else if(Burst == true && isReloading == false && isSprinting == false && Input.GetButton("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
+        {
+
+            for (int i = 0; i < bulletsPerBurst; i++)
+            {
+                nextTimeToFire = Time.time + fireRate;
+                Shoot();
+                Recoil_Script.RecoilFire();
+            }
+        }
+        else if (Burst == true && isReloading == false && isSprinting == false && Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire && currentBurst == 0 && bulletsLeft > 0)
         {
             nextTimeToFire = Time.time + fireRate;
             Shoot();
-            Shoot();
-            Shoot();
+            Recoil_Script.RecoilFire();
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize)
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize)
         {
             if(isReloading == false)
             {
@@ -74,7 +86,7 @@ public class Weapon : MonoBehaviour
             
         }
 
-        ammoText.text = bulletsLeft.ToString() + " / 30";
+        //ammoText.text = bulletsLeft.ToString() + " / 30";
     }
 
     void Shoot()
@@ -83,6 +95,7 @@ public class Weapon : MonoBehaviour
         animator.SetTrigger("Recoil");
         //_weaponSource.clip = _shoootingSound;
         //_weaponSource.Play();
+
 
         Vector3 shootingDirection = calculateDirectionAndSpread().normalized;
         RaycastHit hit;
@@ -107,7 +120,7 @@ public class Weapon : MonoBehaviour
         
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
-        _weaponSource.clip = _reloadingSound;
+        //_weaponSource.clip = _reloadingSound;
 
         print("Reloading...");
     }
