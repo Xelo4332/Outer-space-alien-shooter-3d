@@ -64,8 +64,6 @@ public class MoveAi : MonoBehaviour
             currentWaypoint++;
         }
 
-        transform.LookAt(target);
-
     }
 
     private void FixedUpdate()
@@ -77,20 +75,21 @@ public class MoveAi : MonoBehaviour
         {
             Move(speed);
             rb.isKinematic = false;
+            Rotate();
 
         }
         else
         {
             rb.isKinematic = true;
+            Rotate();
+
         }
-       
+
     }
     public void Move(float moveSpeed)
     {
         Vector3 direction = ((Vector3)path.vectorPath[currentWaypoint] - rb.position).normalized;
-
         rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
-        Rotate();
     }
 
     void Rotate()
