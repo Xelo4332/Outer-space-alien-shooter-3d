@@ -86,7 +86,7 @@ public class Weapon : MonoBehaviour
             
         }
 
-        //ammoText.text = bulletsLeft.ToString() + " / 30";
+        ammoText.text = bulletsLeft.ToString() + " / 30";
     }
 
     void Shoot()
