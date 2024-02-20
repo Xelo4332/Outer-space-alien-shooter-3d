@@ -9,7 +9,8 @@ public class DoorOpening : Interacteble
     [SerializeField] GameObject _SecondDoor;
     [SerializeField] GameObject _enemy;
     private Coroutine _attackRoutine;
-    [SerializeField]protected bool _isOpened;
+    [SerializeField] protected bool _isOpened;
+    [SerializeField] private int _price;
     
     private int AmmountDoors;
     // Start is called before the first frame update
@@ -57,15 +58,14 @@ public class DoorOpening : Interacteble
     protected override void OnPlayerInteracted()
     {
 
-        if (_isOpened == false)
+        if (_player._score >=_price)
         {
-            _isOpened = true;
+            _player.UpdateScore(-_price);
             _Door.SetActive(false);
             _SecondDoor.SetActive(false);
-
+            print("dörren öppet");
         }
 
-        print("dörren öppet");
 
   
     }

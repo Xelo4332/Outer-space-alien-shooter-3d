@@ -15,7 +15,7 @@ public class SpawnerActivator : MonoBehaviour
     }
 
     //If player collides with spawner activater object, that it will activate a new spawn points. Wave number are bassicly a variable to show which room are spawn points located.
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
         {
