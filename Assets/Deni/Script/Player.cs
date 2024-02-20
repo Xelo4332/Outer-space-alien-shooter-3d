@@ -18,6 +18,11 @@ public class Player : MonoBehaviour
     {
         InteractHandle();
 
+        if(_health > 100)
+        {
+            _health = 100;
+        }
+
         if (_health <= 0)
         {
             Debug.LogWarning("U dead");
@@ -38,7 +43,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator RegernerationRoutine()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         while (_health < 100)
         {
             _health += RegenerationAmount;
