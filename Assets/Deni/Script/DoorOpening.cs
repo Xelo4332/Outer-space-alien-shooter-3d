@@ -61,9 +61,10 @@ public class DoorOpening : Interacteble
         if (_player._score >=_price)
         {
             _player.UpdateScore(-_price);
-            _Door.SetActive(false);
-            _SecondDoor.SetActive(false);
+            _UIcanvas.SetActive(false);
             print("dörren öppet");
+            Destroy(_Door);
+
         }
 
 
