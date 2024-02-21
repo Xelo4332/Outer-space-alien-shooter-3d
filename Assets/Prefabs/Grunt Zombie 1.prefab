@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7504c11943e27194a83b6a1dafe8187b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 5
+  <MaxHealth>k__BackingField: 10
 --- !u!114 &7492509652785396530
 MonoBehaviour:
   m_ObjectHideFlags: 0
