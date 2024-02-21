@@ -49,6 +49,7 @@ public class EnemyAttackState : EnemyState
             timer = 0;
             player.DamageHit(25);
             CameraShake.ShakeOnce(0.2f, 1.5f);
+            Debug.LogWarning("Damage");
         }
 
        if(enemy.IsWithinStrikingDistance == false)
