@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public event Action OnhealthUpdate;
     public event Action OnScoreUpdate;
     [SerializeField] public bool _hasKey;
+    [Range(0, 100)]
     [SerializeField] public float _health;
     public event Action Interact;
     [SerializeField] public int RegenerationAmount;
@@ -17,12 +18,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         InteractHandle();
-
-        if(_health > 100)
+        if (_health <= 100)
         {
             _health = 100;
         }
-
         if (_health <= 0)
         {
             Debug.LogWarning("U dead");
