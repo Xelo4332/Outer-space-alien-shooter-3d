@@ -81,7 +81,7 @@ public class MoveAi : MonoBehaviour
         else
         {
             rb.isKinematic = true;
-            Rotate();
+            Rotate()    
 
         }
 
