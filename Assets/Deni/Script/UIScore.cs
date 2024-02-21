@@ -18,7 +18,7 @@ public class UIScore : MonoBehaviour
     //We will make that unity will know that the text will diplay what score int is current is.
     private void OnScoreChanged()
     {
-        _textComponent.text = $" {_playerScore._score}";
+        _textComponent.text = "KILLS: " + $" {_playerScore._score}";
     }
     //Here we will unsubcribe the event.
     private void OnDestroy()
