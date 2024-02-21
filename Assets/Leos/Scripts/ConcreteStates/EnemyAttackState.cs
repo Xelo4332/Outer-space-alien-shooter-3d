@@ -16,6 +16,7 @@ public class EnemyAttackState : EnemyState
     private float exitTimer;
     private float timeTillExit;
     private float distanceToCountExit = 3f;
+
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -47,7 +48,7 @@ public class EnemyAttackState : EnemyState
         {
             timer = 0;
             player.DamageHit(25);
-
+            CameraShake.ShakeOnce(0.2f, 1.5f);
         }
 
        if(enemy.IsWithinStrikingDistance == false)
