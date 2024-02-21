@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     {
         _health -= damage;
         StartRegeneration();
-       // OnhealthUpdate.Invoke();
+        OnhealthUpdate.Invoke();
 
     }
     private void InteractHandle()
