@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Deni
 public class AudioManager : MonoBehaviour
 {
     public AudioSource musicSource;
@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     private AudioClip _currentSoundEffect;
     public AudioClip CurrentSoundEffct => _currentSoundEffect;
 
+     //If instance = null then we will instance the objekt. If doesn't instance then we will destroy the object.
     private void Awake()
     {
         if (instance == null)
@@ -22,13 +23,13 @@ public class AudioManager : MonoBehaviour
         }
 
     }
-
+    //spelar music
     public void PlayMusic(AudioClip clip)
     {
         musicSource.clip = clip;
         musicSource.Play();
     }
-
+    //spelar effecter
     public void PlaySoundEffect(AudioClip clip)
     {
         soundEffectSource.clip = clip;
@@ -38,7 +39,7 @@ public class AudioManager : MonoBehaviour
             _currentSoundEffect = clip;
         }
     }
-
+    //stänger av sound efekter
     public void ClearSoundEffect()
     {
         soundEffectSource.Stop();

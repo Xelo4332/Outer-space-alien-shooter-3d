@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RifleBuy : Interacteble
 {
-    //Deni
+    //Deni 
     [SerializeField] private GameObject _rifle;
     [SerializeField] private GameObject _pistol;
     [SerializeField] private GameObject _shotgun;
@@ -14,7 +14,7 @@ public class RifleBuy : Interacteble
 
 
     private Player _player;
-    //We will find Player script comment and Animator component.
+    //We will find Player script comment 
     void Start()
     {
         _player = FindObjectOfType<Player>();
@@ -22,10 +22,10 @@ public class RifleBuy : Interacteble
 
     }
 
-    //We will overrride the method and use the base of method the script that we innheritance from.
+  
 
 
-    //We ovveride here method too, so if play score is more than price, then we will play animation, update the score and update the weapon.
+    //We ovveride here method and make all object false besides weapon we want.
     protected override void OnPlayerInteracted()
     {
         if (_player._score >= _price)

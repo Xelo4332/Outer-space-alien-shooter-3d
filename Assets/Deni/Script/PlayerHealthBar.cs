@@ -14,7 +14,7 @@ public class PlayerHealthBar : MonoBehaviour
     private Volume _volume;
     
 
-
+    //We will find our global volume, get the profile and set value 0 on intensity.
     private void Awake()
     {
         _volume = GetComponent<Volume>();
@@ -35,7 +35,7 @@ public class PlayerHealthBar : MonoBehaviour
         OnPlayerHealthUpdate();
     }
 
-    //If player is getting hit, it will make player screen become more red and red. 
+    //If player is getting hit, it will make player screen becomes red.
     //I made a safety measure, while player health is bigger than 50, it will activate the method, I don't want to screen becomes to red.
     private void OnPlayerHealthUpdate()
     {
