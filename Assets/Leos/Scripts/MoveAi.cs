@@ -8,7 +8,7 @@ public class MoveAi : MonoBehaviour
     [Header("Movement")]
     public Transform target;
 
-    public float nextWaypointDistance = 1.5f;
+    public float nextWaypointDistance = 3;
 
     public float speed;
 
@@ -25,7 +25,7 @@ public class MoveAi : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody>();
 
-        InvokeRepeating("UpdatePath", 0f, 1.5f);
+        InvokeRepeating("UpdatePath", 0f, 3f);
     }
 
     void UpdatePath()
@@ -71,7 +71,7 @@ public class MoveAi : MonoBehaviour
         float targetDistance = Vector3.Distance(rb.position, target.position);
         Debug.DrawLine(rb.position, target.position);
         Debug.Log(targetDistance);
-        if (targetDistance > 1.5f)
+        if (targetDistance > 3f)
         {
             Move(speed);
             rb.isKinematic = false;
