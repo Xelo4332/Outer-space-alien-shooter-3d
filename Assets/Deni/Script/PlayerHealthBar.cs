@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-[RequireComponent(typeof(Image))]
+
 public class PlayerHealthBar : MonoBehaviour
 {
     //Deni
