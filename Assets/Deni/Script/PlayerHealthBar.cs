@@ -2,40 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
-[RequireComponent(typeof(Image))]
+
 public class PlayerHealthBar : MonoBehaviour
 {
     //Deni
     private Player _player;
-    private Image _image;
+    private Vignette _image;
+    private Volume _volume;
+    
 
-
+    //We will find our global volume, get the profile and set value 0 on intensity.
+    private void Awake()
+    {
+        _volume = GetComponent<Volume>();
+        _volume.profile.TryGet(out _image);
+        _image.intensity.value = 0f;
+    }
     //here we will find our components, and subcribe an event for player health update.
     private void Start()
     {
+
         _player = FindObjectOfType<Player>();
         if (_player == null)
         {
             Debug.LogError($"Player not found in {name} class!");
             return;
         }
-        _image = GetComponent<Image>();
         _player.OnhealthUpdate += OnPlayerHealthUpdate;
         OnPlayerHealthUpdate();
     }
 
-    //If player is getting hit, it will make player screen become more red and red. 
+    //If player is getting hit, it will make player screen becomes red.
     //I made a safety measure, while player health is bigger than 50, it will activate the method, I don't want to screen becomes to red.
     private void OnPlayerHealthUpdate()
     {
+
         if (_player._health > 50)
         {
-            var newColor = _image.color;
-            newColor.a = 1 - (float)_player._health / 100;
-            _image.color = newColor;
-        }
+            var Intensity = _image;
+            _image.intensity.value = 3 - (float)_player._health / (100/3);
+            _image = Intensity;
 
+        }
     }
 
     //UnSubscribes the event.
