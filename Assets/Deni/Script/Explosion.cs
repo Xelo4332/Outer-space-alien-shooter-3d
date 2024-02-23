@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
-{ // EJ ANVÄNDS, HADE INTE TID MED DET OCH PROBELM MED AI DENI
+{
      [SerializeField] private ParticleSystem _explosionEffects;
     [SerializeField] private int _explosionDamage;
     [SerializeField] private float _delayExplosion;
