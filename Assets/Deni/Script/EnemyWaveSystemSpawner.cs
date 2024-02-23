@@ -44,7 +44,7 @@ public class EnemyWaveSystemSpawner : MonoBehaviour
     //Everytime enemy spawn it will remove enemy count to know how much enemies left.
     private IEnumerator SpawnRoutine()
     {
-        _enemiesCount = _game.Round * 2;
+        _enemiesCount = _game.Round * 8;
         _aliveEnemiesCount = _enemiesCount;
         while (_enemiesCount > 0)
         {
