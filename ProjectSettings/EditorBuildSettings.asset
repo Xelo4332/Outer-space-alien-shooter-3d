@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: d9aef8bb8efb1754ca8a0a3e60fae454
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: e105bd7c32764424da49f9e0e6da0df2
   m_configObjects: {}

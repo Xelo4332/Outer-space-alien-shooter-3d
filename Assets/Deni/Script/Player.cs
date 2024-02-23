@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {//Deni
     public event Action OnhealthUpdate;
     public event Action OnScoreUpdate;
-    [SerializeField] public bool _hasKey;
+    private FirstPersonController _fps;
     [SerializeField] public float _health;
     public event Action Interact;
     [SerializeField] public int RegenerationAmount;
     public int _score;
     private Coroutine _regernerationRoutine;
+
+    private void Start()
+    {
+        _fps = FindObjectOfType<FirstPersonController>();
+    }
 
     //Checking here so player don't get over 100hp and when play is dead then it will send the player to death screen
     private void Update()
@@ -26,7 +32,14 @@ public class Player : MonoBehaviour
 
         if (_health <= 0)
         {
-            Debug.LogWarning("U dead");
+            _fps.lockCursor = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            if (_fps.lockCursor == false)
+            {
+                SceneManager.LoadScene("DeathScene");
+            }
+   
         }
     }
     //Here we will start our courtine that will regen player helath.
