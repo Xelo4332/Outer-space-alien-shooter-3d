@@ -18,7 +18,7 @@ public class UIRoundCounter : MonoBehaviour
     //We will make that our text commponent will become the round counter UI display.
     private void OnRoundChanged()
     {
-        _textComponent.text = $" {_roundSettings.Round}";
+        _textComponent.text = $"Wave: {_roundSettings.Round}";
     }
 
     //Here will unsubscribes the event.
