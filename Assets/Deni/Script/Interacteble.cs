@@ -3,29 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Interacteble : MonoBehaviour
-{//Deni
+{
     [SerializeField] protected Material _material;
     [SerializeField] protected float _scale;
     [SerializeField] protected GameObject _UIcanvas;
+    private void Start()
+    {
+        //_material.SetFloat("_Scale", _scale);
+
+    }
 
 
-    //Will subscribe to player by a event and activate canvas while player is inside collider
     protected virtual void OnTriggerEnter(Collider col)
     {
         if (col.TryGetComponent(out Player player))
         {
             player.Interact += OnPlayerInteracted;
-
+           // _scale = 1.1f;
+           // _material.SetFloat("_Scale", _scale);
             _UIcanvas.SetActive(true);
         }
     }
+    //Same as upper script, but here we unsubscribes from the event.
 
-    //Will unsubscribe to player by a event and activate canvas while player is inside collider
     protected virtual void OnTriggerExit(Collider col)
     {
         if (col.TryGetComponent(out Player player))
         {
             player.Interact -= OnPlayerInteracted;
+           // _scale = 0;
+            //_material.SetFloat("_Scale", _scale);
             _UIcanvas.SetActive(false);
         }
     }

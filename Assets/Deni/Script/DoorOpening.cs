@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorOpening : Interacteble
-{//Deni
+{
     [SerializeField] Player _player;
     [SerializeField] GameObject _Door;
     [SerializeField] GameObject _SecondDoor;
@@ -13,7 +13,7 @@ public class DoorOpening : Interacteble
     [SerializeField] private int _price;
     
     private int AmmountDoors;
-    //this method vill find player
+    // Start is called before the first frame update
     private void Awake()
     {
         _player = FindObjectOfType<Player>();
@@ -54,7 +54,7 @@ public class DoorOpening : Interacteble
     }
     */
 
-    //When we will price E the game will, then activate an event that will send signal to our ui and destroy the door.
+    // Update is called once per frame
     protected override void OnPlayerInteracted()
     {
 
