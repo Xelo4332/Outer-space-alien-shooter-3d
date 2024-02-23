@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Interacteble : MonoBehaviour
 {//Deni
-    [SerializeField] protected Material _material;
-    [SerializeField] protected float _scale;
+
     [SerializeField] protected GameObject _UIcanvas;
 
 

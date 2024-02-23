@@ -7,9 +7,6 @@ public class DoorOpening : Interacteble
     private Player _player;
     [SerializeField] GameObject _Door;
     [SerializeField] GameObject _SecondDoor;
-    [SerializeField] GameObject _enemy;
-    private Coroutine _attackRoutine;
-    [SerializeField] protected bool _isOpened;
     [SerializeField] private int _price;
     
     private int AmmountDoors;
