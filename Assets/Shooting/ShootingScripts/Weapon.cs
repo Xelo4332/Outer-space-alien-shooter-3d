@@ -93,8 +93,8 @@ public class Weapon : MonoBehaviour
     {
         muzzleEffect.Play();
         animator.SetTrigger("Recoil");
-        //_weaponSource.clip = _shoootingSound;
-        //_weaponSource.Play();
+        _weaponSource.clip = _shoootingSound;
+        _weaponSource.Play();
 
 
         Vector3 shootingDirection = calculateDirectionAndSpread().normalized;
@@ -120,7 +120,8 @@ public class Weapon : MonoBehaviour
         
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
-        //_weaponSource.clip = _reloadingSound;
+        _weaponSource.clip = _reloadingSound;
+        _weaponSource.Play();
 
         print("Reloading...");
     }
