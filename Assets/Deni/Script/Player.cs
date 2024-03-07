@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {//Deni
+    public event Action PlayerIsDead;
     public event Action OnhealthUpdate;
     public event Action OnScoreUpdate;
     private FirstPersonController _fps;
@@ -37,6 +38,13 @@ public class Player : MonoBehaviour
             _fps.lockCursor = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            PlayerIsDead?.Invoke();
+
+            DDOL[] ddols = FindObjectsOfType<DDOL>();
+            foreach (DDOL ddol in ddols)
+            {
+                Destroy(ddol.gameObject);
+            }
             if (_fps.lockCursor == false)
             {
                 SceneManager.LoadScene("DeathScene");

@@ -5,11 +5,10 @@ using UnityEngine;
 public class DoorOpening : Interacteble
 {//Deni
    
-    [SerializeField] GameObject _Door;
-    [SerializeField] GameObject _SecondDoor;
+
     [SerializeField] private int _price;
     private Player _player;
-    private InteractHandler _inter;
+
     
 
 
@@ -19,7 +18,6 @@ public class DoorOpening : Interacteble
     private void Awake()
     {
         _player = FindObjectOfType<Player>();
-        _inter = FindObjectOfType<InteractHandler>();
     }
 
 
@@ -33,7 +31,7 @@ public class DoorOpening : Interacteble
             print("dörren öppet");
             Debug.Log("MinusPoöng");
             _UIcanvas.SetActive(false);
-            _inter.Interact -= OnPlayerInteracted;
+           _playerInter.Interact -= OnPlayerInteracted;
             this.gameObject.SetActive(false);
         }
    

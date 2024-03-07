@@ -6,10 +6,10 @@ public class Interacteble : MonoBehaviour
 {//Deni
 
     [SerializeField] protected GameObject _UIcanvas;
-    private InteractHandler _player;
+    protected InteractHandler _playerInter;
     private void Start()
     {
-        _player = FindObjectOfType<InteractHandler>();
+        _playerInter = FindObjectOfType<InteractHandler>();
     }
 
     //Will subscribe to player by a event and activate canvas while player is inside collider
@@ -25,7 +25,7 @@ public class Interacteble : MonoBehaviour
 
     private void OnDestroy()
     {
-        _player.Interact -= OnPlayerInteracted; // Unsubscribe if we die
+        _playerInter.Interact -= OnPlayerInteracted; // Unsubscribe if we die
         Debug.Log("Yo i still hapen");
     }
     //Will unsubscribe to player by a event and activate canvas while player is inside collider
