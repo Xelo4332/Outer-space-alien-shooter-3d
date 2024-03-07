@@ -10,20 +10,22 @@ public class Player : MonoBehaviour
     public event Action OnScoreUpdate;
     private FirstPersonController _fps;
     [SerializeField] public float _health;
-    public event Action Interact;
     [SerializeField] public int RegenerationAmount;
     public int _score;
+    public GameObject _currentWeapn;
     private Coroutine _regernerationRoutine;
+    private WeaponBuyScript _weaponBuy;
 
     private void Start()
     {
         _fps = FindObjectOfType<FirstPersonController>();
+        _weaponBuy = FindObjectOfType<WeaponBuyScript>();
     }
 
     //Checking here so player don't get over 100hp and when play is dead then it will send the player to death screen
     private void Update()
     {
-        InteractHandle();
+      
 
         if (_health > 100)
         {
@@ -75,18 +77,22 @@ public class Player : MonoBehaviour
 
     }
     //This is going to be our base for the item intreaction that we will refrense in other scripts.
-    private void InteractHandle()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Interact?.Invoke();
-        }
-    }
+
 
     //This is to update player score and Invoke Onscore event.
     public void UpdateScore(int score)
     {
         _score += score;
         OnScoreUpdate?.Invoke();
+    }
+
+   public void UpdateWeapon(GameObject NewWeapon)
+    {
+        _weaponBuy._newWeapon = NewWeapon;
+        _currentWeapn.SetActive(false);
+        _currentWeapn = null;
+        _weaponBuy._newWeapon.SetActive(true);
+        _currentWeapn = _weaponBuy._newWeapon;
+        
     }
 }
