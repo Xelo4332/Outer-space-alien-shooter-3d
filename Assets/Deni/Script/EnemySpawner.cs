@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Zombie[] _enemies;
     [SerializeField] private float _spawnInterval;
     [SerializeField] private int _startEnemiesCount;
-
+    //GAMLA ENEMY SPAWNER, NOT REVELANT DEN NYA ÄR ENEMYWAVE SPAWNER MVH DENI
     private void Start()
     {
         CheckSpotsHeight();
